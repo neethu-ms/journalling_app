@@ -15,13 +15,9 @@ import "../../styles/Bio.scss";
     const USERBIO = "USERBIO";
     const INSIGHTS = "INSIGHTS";
     const LOADING = "LOADING";
-    const EDIT = "EDIT";
     const DENIED = "DENIED";
     const ERROR = "ERROR";
-  
-    const level = 10
     const { mode, transition, back } = useVisualMode(USERBIO);
-
 
     const loadInsight = () => {
       console.log("CLICKED: ", props.currentUserGoals )
@@ -30,7 +26,6 @@ import "../../styles/Bio.scss";
           transition(INSIGHTS)
         })
         .catch(error => transition(ERROR))
-
     }
     
     return(
@@ -49,7 +44,7 @@ import "../../styles/Bio.scss";
       <UserBio 
         bio={props.bio}
         onClick={()=>  {
-          if (level > 9) {
+          if (props.level > 9) {
           transition(LOADING)
           loadInsight()
         } else {
