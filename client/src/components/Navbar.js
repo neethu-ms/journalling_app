@@ -24,6 +24,9 @@ export default function Navbar(props) {
   const style = {
 
     background : "#03A9F4"
+     // background : "#0033cc"
+    //background: "linear-gradient(to bottom, #0033cc -2%, #99ccff 100%)"
+    
   };
   const [open, setOpen] = useState(false);
   const [action,setAction] = useState("");
