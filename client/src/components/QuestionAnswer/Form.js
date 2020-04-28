@@ -1,12 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import Button from '@material-ui/core/Button';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import TextField from '@material-ui/core/TextField';
 
-export default function Form(props){
-  
-  const [ans, setAns] = useState();
-
+export default function Form(props) {
   return (
     <main >
       <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
@@ -16,16 +12,23 @@ export default function Form(props){
           placeholder={props.suggestion}
           multiline
           fullWidth
+          value={props.answer}
           variant="filled"
           onChange={(e) => props.setAnswer(e.target.value)}
         />
-      <Button
-        variant="outlined"
-        color="primary"
-        size="large"
-        onClick={() => props.addUserGoal({goal_id:props.goal_id})}
-      >
-      Answer
+        <Button
+          variant="outlined"
+          color="primary"
+          size="large"
+          onClick={() => {
+            props.setExpanded(props.goal_id);
+            props.addUserGoal({ goal_id: props.goal_id });
+            props.setAnswer("");
+
+          }
+          }
+        >
+          Answer
       </Button>
       </form>
     </main>

@@ -1,4 +1,4 @@
-import React from 'react';
+import React,{useState} from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import ExpansionPanel from '@material-ui/core/ExpansionPanel';
 import ExpansionPanelSummary from '@material-ui/core/ExpansionPanelSummary';
@@ -15,24 +15,44 @@ const useStyles = makeStyles((theme) => ({
   heading: {
     fontSize: theme.typography.pxToRem(15),
     fontWeight: theme.typography.fontWeightRegular,
+    
   },
+
+  panel:{
+    background: "linear-gradient(to bottom, #00ccff -1%, #99ccff 92%)"
+    //backgroundColor:"#ccffff"
+    //background: "linear-gradient(to top right, #00ffcc 0%, #00cc99 100%)"
+   // background: "linear-gradient(to bottom, #ccffff 0%, #66ccff 100%)"
+  },
+
+  formStyle:{
+    backgroundColor:"#ccffff"
+  },
+
+  topo:{
+    width:"100%"
+  }
+
+
 }));
 
 export default function SimpleExpansionPanel(props) {
+  console.log("props.expanded",props.expanded);
   const classes = useStyles();
-
+  console.log(props.expanded[""+props.goal_id]);
   return (
-    <ExpansionPanel smUp="hide" className="expansion">
-      <ExpansionPanelSummary
-        expandIcon={<ExpandMoreIcon />}
+    <ExpansionPanel expanded={props.expanded[props.goal_id]===true?true:false}>
+      <ExpansionPanelSummary className={classes.panel} onClick={() => props.setExpanded(props.goal_id)}
+        expandIcon={<ExpandMoreIcon/>}
         aria-controls="panel1a-content"
         id="panel1a-header"
+        
       >
         <Typography className={classes.heading}>{props.question}</Typography>
       </ExpansionPanelSummary>
-      <ExpansionPanelDetails >
-        <Typography> 
-          <Form 
+      <ExpansionPanelDetails className={classes.formStyle}>
+        <Typography className={classes.topo}> 
+          <Form
             setAnswer = {props.setAnswer}
             goal_id = {props.goal_id}
             addUserGoal = {props.addUserGoal}
@@ -40,6 +60,8 @@ export default function SimpleExpansionPanel(props) {
             suggestion={props.suggestion}
             currentUserId={props.currentUserId}
             goalId={props.goalId}
+            setExpanded={props.setExpanded}
+            answer = {props.answer}
           />
         </Typography>
       </ExpansionPanelDetails>

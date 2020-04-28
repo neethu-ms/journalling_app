@@ -25,6 +25,9 @@ export default function QuestionFeed(props) {
               goal_id = {goal.id}
               addUserGoal = {props.addUserGoal}
               currentUserId={props.currentUserId}
+              setExpanded={props.setExpanded}
+              expanded={props.expanded}
+              answer = {props.answer}
             />
           </Slide>
   
@@ -44,9 +47,3 @@ export default function QuestionFeed(props) {
   )
 }
 
-{/* 
-question={question.question}
-              suggestion={question.suggestion}
-              giveAnswer={props.giveAnswer}
-              currentUserId={props.currentUserId}
-              goalId={question.id} */}
