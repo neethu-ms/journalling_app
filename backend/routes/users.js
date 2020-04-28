@@ -41,4 +41,20 @@ router.post("/", (req, res) => {
     });
 });
 
+//Update  user score
+router.put("/", (req, res) => {
+  console.log("req",req.body.points);
+  db.user.update({
+    points:req.body.points},
+    {where: {id:req.body.id}}
+    )
+    .then(users => {
+      res.json(users);
+
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
 module.exports = router;
