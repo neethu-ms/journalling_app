@@ -8,6 +8,7 @@ import useApplicationData from "../hooks/useApplicationData";
 import { Container } from '@material-ui/core';
 import "./Application.scss";
 
+
 export default function Application() {
 
   const {
@@ -18,7 +19,8 @@ export default function Application() {
     addUserGoal,
     setAnswer,
     createUser,
-    handleDelete
+    handleDelete,
+    setExpanded
   } = useApplicationData();  // Gets required functions and state information 
 
   const bio = state.biodatas.filter((biodata) => biodata.user_id === state.currentUser)[0]; // Gets biodata for current user
@@ -60,6 +62,9 @@ export default function Application() {
             currentUserId={state.currentUser}
             filteredGoals={filteredGoals}
             createUser={createUser}
+            setExpanded={setExpanded}
+            expanded={state.expanded}
+            answer = {state.answer}
           />
           <Wall userGoals={state.currentUserGoals} userId={state.currentUser} handleDelete={handleDelete} />
         </section>
