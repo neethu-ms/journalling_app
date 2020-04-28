@@ -25,10 +25,12 @@ export default function Application() {
 
   const bio = state.biodatas.filter((biodata) => biodata.user_id === state.currentUser)[0]; // Gets biodata for current user
   const userObj = state.users.filter((user) => user.id === state.currentUser)[0]; // Gets current user object
-
+  console.log("userObj,userObj");
   let level;
   if (userObj) {
-    level = ((userObj.points / 10)>=1?(userObj.points / 10):1).toFixed(); // Level is computed from points
+    const computedLevel = Math.floor(userObj.points / 10);
+    level = (computedLevel>=1?computedLevel:1).toFixed(); // Level is computed from points
+    console.log("level",level);
   }
 
   const filteredGoals = state.goals.slice(0, level);

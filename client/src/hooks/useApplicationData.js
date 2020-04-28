@@ -54,6 +54,25 @@ export default function useApplicationData() {
     );
   };
 
+    // Set user points 
+    const setPoints = function(id,points){
+      let newPoints = state.users.filter(user => user.id === state.currentUser)[0].points;
+      newPoints += points;
+    
+
+      axios
+      .put(`/api/users`, {points:newPoints,id})
+      .then((result) => {
+        console.log("points:",points);
+        state.users.filter(user => user.id === state.currentUser)[0].points = newPoints;
+      })
+      .catch((err) => console.log("error"))
+    }
+
+    //
+    useEffect(() =>{
+
+    },[state.currentUserGoals])
 
   // Adding new goal 
   const addUserGoal = function (goal) {
@@ -74,6 +93,8 @@ export default function useApplicationData() {
           userGoals: newUserGoals
 
         }));
+
+        setPoints(state.currentUser,result.data.answer.split(" ").length);
       }
       )
       .catch((err) => console.log("error"))
@@ -97,6 +118,10 @@ export default function useApplicationData() {
           userGoals: newUserGoals
 
         }));
+
+       console.log("result=",result);
+        const answer = state.currentUserGoals.filter((goal) => goal.id === id)[0].answer;
+        setPoints(state.currentUser,-1*(answer.split(" ").length));
       }
       )
       .catch((err) => console.log("error"))
@@ -111,7 +136,7 @@ export default function useApplicationData() {
     user.email = email;
     user.password = password;
     user.handle = "@" + user.email.substring(0, 3);
-    user.points = 1;
+    user.points = 0;
     //user.journalNo = 200;
 
     const biodataObj = {};
@@ -166,6 +191,7 @@ export default function useApplicationData() {
 
   };
 
+
   // set expanded 
   const setExpanded = function (i) {
     const newExpanded = { ...state.expanded };
@@ -202,9 +228,10 @@ export default function useApplicationData() {
   }
 
 
-
+  //set insights
   const setInsight = currentUserInsight => setState({ ...state, currentUserInsight });
 
+  //Fetch insights
   const requestInsight = (currentUserGoals) => {
     return Promise.resolve(
       axios
@@ -216,7 +243,12 @@ export default function useApplicationData() {
         })
         .catch(err => console.log(err))
     )
-  }
+  };
+
+
+
+
+
   return {
     state,
     logInUser,
@@ -226,7 +258,8 @@ export default function useApplicationData() {
     requestInsight,
     createUser,
     handleDelete,
-    setExpanded
+    setExpanded,
+    setPoints
 
   };
 }
