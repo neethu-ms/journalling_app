@@ -40,7 +40,7 @@ export default function useApplicationData() {
         ...state,
         currentUserGoals: getCurrentUserGoals(state.userGoals, state.goals, state.currentUser)
       }))
-      console.log('currenyUserGoals', state.currentUserGoals);
+
     }
   }, [state.currentUser, state.userGoals]);
 
@@ -52,15 +52,33 @@ export default function useApplicationData() {
       answer: ans
     })
     );
-    console.log("answer in state", state.answer);
   };
 
+    // Set user points 
+    const setPoints = function(id,points){
+      let newPoints = state.users.filter(user => user.id === state.currentUser)[0].points;
+      newPoints += points;
+    
+
+      axios
+      .put(`/api/users`, {points:newPoints,id})
+      .then((result) => {
+        console.log("points:",points);
+        state.users.filter(user => user.id === state.currentUser)[0].points = newPoints;
+      })
+      .catch((err) => console.log("error"))
+    }
+
+    //
+    useEffect(() =>{
+
+    },[state.currentUserGoals])
 
   // Adding new goal 
   const addUserGoal = function (goal) {
     goal.user_id = state.currentUser;
     goal.answer = state.answer;
-    const goalId = goal.id;
+
     axios
       .post(`/api/userGoals`, goal)
       .then((result) => {
@@ -75,6 +93,8 @@ export default function useApplicationData() {
           userGoals: newUserGoals
 
         }));
+
+        setPoints(state.currentUser,result.data.answer.split(" ").length);
       }
       )
       .catch((err) => console.log("error"))
@@ -98,6 +118,10 @@ export default function useApplicationData() {
           userGoals: newUserGoals
 
         }));
+
+       console.log("result=",result);
+        const answer = state.currentUserGoals.filter((goal) => goal.id === id)[0].answer;
+        setPoints(state.currentUser,-1*(answer.split(" ").length));
       }
       )
       .catch((err) => console.log("error"))
@@ -108,21 +132,18 @@ export default function useApplicationData() {
 
   // Create new user 
   const createUser = function (email, password, biodata) {
-    console.log("create user");
     const user = {};
     user.email = email;
     user.password = password;
-    // user.biodata = biodata;
     user.handle = "@" + user.email.substring(0, 3);
-    user.points = 1;
-    user.journalNo = 200;
+    user.points = 0;
+    //user.journalNo = 200;
 
     const biodataObj = {};
     biodataObj.name = biodata;
     biodataObj.text = biodata;
     biodataObj.user_id = null;
-    console.log("user=", user);
-
+   
     axios
       .post(`/api/users`, user)
       .then((result) => {
@@ -138,8 +159,6 @@ export default function useApplicationData() {
           currentUser: result.data.id
 
         }));
-
-        console.log("biodataObj=", biodataObj);
         if (biodata != null) {
           axios
             .post(`/api/biodatas`, biodataObj)
@@ -148,7 +167,6 @@ export default function useApplicationData() {
                 ...state.biodatas,
                 result.data
               ];
-
 
               setState((state) => ({
                 ...state,
@@ -173,11 +191,12 @@ export default function useApplicationData() {
 
   };
 
+
   // set expanded 
-  const setExpanded = function(i){
-    const newExpanded = {...state.expanded};
-    newExpanded[""+i]=newExpanded[""+i]===true?false:true
-    
+  const setExpanded = function (i) {
+    const newExpanded = { ...state.expanded };
+    newExpanded["" + i] = newExpanded["" + i] === true ? false : true
+
 
     setState((state) => ({
       ...state,
@@ -188,17 +207,15 @@ export default function useApplicationData() {
 
   // set user state
   const logInUser = (email, password) => {
-    console.log('in logged in user');
-    const user = state.users.filter((user) => user.email === email && user.password === password)[0];
+       const user = state.users.filter((user) => user.email === email && user.password === password)[0];
     if (user) {
       setState({
         ...state,
         currentUser: user.id
       });
     }
-    console.log("currentUser", state.currentUser);
-    return user;
-    // return state.currentUser;
+       return user;
+
   }
 
   // reset user state 
@@ -211,9 +228,10 @@ export default function useApplicationData() {
   }
 
 
-
+  //set insights
   const setInsight = currentUserInsight => setState({ ...state, currentUserInsight });
 
+  //Fetch insights
   const requestInsight = (currentUserGoals) => {
     return Promise.resolve(
       axios
@@ -225,7 +243,12 @@ export default function useApplicationData() {
         })
         .catch(err => console.log(err))
     )
-  }
+  };
+
+
+
+
+
   return {
     state,
     logInUser,
@@ -235,7 +258,8 @@ export default function useApplicationData() {
     requestInsight,
     createUser,
     handleDelete,
-    setExpanded
+    setExpanded,
+    setPoints
 
   };
 }

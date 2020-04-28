@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import  { useState} from "react";
 
 //Sets display mode for Bio component
 export default function useVisualMode(initial) {

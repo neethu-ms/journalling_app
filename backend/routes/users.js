@@ -28,10 +28,27 @@ router.get("/:id", (req, res) => {
 //Create  user
 router.post("/", (req, res) => {
   db.user.create({
-    handle: req.body.handle, email: req.body.email, password: req.body.password, points: req.body.points, journalNo: req.body.journalNo,
+    handle: req.body.handle, email: req.body.email, password: req.body.password, points: req.body.points, 
+    //journalNo: req.body.journalNo,
     createdAt: new Date().toISOString(),
     updatedAt: new Date().toISOString()
   })
+    .then(users => {
+      res.json(users);
+
+    })
+    .catch(err => {
+      res.status(500).json({ error: err.message });
+    });
+});
+
+//Update  user score
+router.put("/", (req, res) => {
+  console.log("req",req.body.points);
+  db.user.update({
+    points:req.body.points},
+    {where: {id:req.body.id}}
+    )
     .then(users => {
       res.json(users);
 

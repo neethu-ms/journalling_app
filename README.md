@@ -13,6 +13,7 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
 1. User will be provided with questions based on their level. If user is at level 1, user will have 1 question, if at level 2, there will be 2 questions like that.
 2. When user answers a question, it will be added to his timeline immediately.
 3. If user is at level 10, he will be able to see his insights, which is based on the analysis of his previous entries.
+4. Level is computed based on points. For each word, 1 point will be added. If user deletes an entry, the points will be reduced.
 
 ## Final Product
 
@@ -32,6 +33,8 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
    6. sequelize
    7. sequelize-cli
    8. pg
+   9. ibm-watson
+   10. personality-text-summary
 
 ## Design tools
 
