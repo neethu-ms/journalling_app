@@ -1,4 +1,5 @@
 import React from "react";
+import {Button} from '@material-ui/core';
 
 export default function Error(props) {
   return (
@@ -9,11 +10,13 @@ export default function Error(props) {
         alt="Keep it up!"
       />
       <h4 className="">{props.message}</h4>
-      <button 
-       className=""
+      <Button 
+       variant="contained" 
+           color="secondary"
+           className="button"
        onClick={props.onCancel}>
          BACK
-     </button>
+      </Button>
     </main>
   );
 }

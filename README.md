@@ -14,6 +14,13 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
 2. When user answers a question, it will be added to his timeline immediately.
 3. If user is at level 10, he will be able to see his insights, which is based on the analysis of his previous entries.
 
+## Final Product
+
+!["Journaling home page"](docs/homePage.png "Home Page")
+!["Question Answer Panel"](docs/questionAnswerPanel.png "Question Answer Panel")
+!["Timeline"](docs/Timeline.png "Timeline")
+!["Get Insights"](docs/GetInsights.png "Get Insights")
+!["Level 1 User"](docs/Level1User.png "Level 1 User")
 
 ## Dependencies
 
