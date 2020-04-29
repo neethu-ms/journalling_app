@@ -7,15 +7,12 @@ import AnswerQuestionPanel from "./QuestionAnswer/AnswerQuestionPanel"
 import Slide from '@material-ui/core/Slide';
 import { Container } from "@material-ui/core";
 
-export default function QuestionFeed(props) {
+export default function QuestionList(props) {
   const questionsList = 
     props.filteredGoals.map( (goal, i) => {
-      console.log(goal.id)
-//      console.log(props.answeredGoals.find( (id) => id === goal.id))
       return(
         <div>
-    
-          <Slide direction="up" in={false} >
+              <Slide direction="up" in={false} >
             <AnswerQuestionPanel 
               key={i}
               question={goal.question}

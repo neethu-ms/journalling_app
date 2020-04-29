@@ -1,37 +1,32 @@
-import React from 'react';
-import '../../styles/Bio.scss';
-import { Button, Container, FormHelperText } from '@material-ui/core';
-import { makeStyles } from '@material-ui/core/styles';
+import React from "react";
+import "../../styles/Bio.scss";
+import { Button, Container } from "@material-ui/core";
+import { makeStyles } from "@material-ui/core/styles";
 const useStyles = makeStyles({
   btnColor: {
     background: "#03A9F4",
-    '&:hover': {
+    "&:hover": {
       background: "#03A9F4",
-
     },
-
     bioContainer: {
       display: "flex",
-      alignItems: "center"
-    }
-
+      alignItems: "center",
+    },
   },
-
-
 });
 export default function UserBio(props) {
   const classes = useStyles();
   return (
     <Container className={classes.bioContainer}>
-      
       <Button
         variant="contained"
         color="secondary"
         className={classes.btnColor}
         onClick={props.onClick}
-        disabled={props.disabled}>
+        disabled={props.disabled}
+      >
         GET INSIGHTS
-     </Button>
+      </Button>
     </Container>
-  )
+  );
 }
