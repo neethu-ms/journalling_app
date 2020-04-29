@@ -10,9 +10,10 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
   <https://daveceddia.com/create-react-app-express-backend/>
 
 ## Features
-1. User will be provided with questions based on their level. If user is at level 1, user will have 1 question, if at level 2, there will be 2 questions like that.
+
+1. User will be provided with questions based on their level. If user is at level 1, user will have 1 question, if at level 2, there will be 2 questions and it goes on. Once the user reaches level 15, then number of questions are limited to 15 for higher levels.
 2. When user answers a question, it will be added to his timeline immediately.
-3. If user is at level 10, he will be able to see his insights, which is based on the analysis of his previous entries.
+3. If user is at level 10 or higher, he will be able to see his insights, which is based on the analysis of his previous entries.
 4. Level is computed based on points. For each word, 1 point will be added. If user deletes an entry, the points will be reduced.
 
 ## Final Product
@@ -39,6 +40,8 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
    8. pg
    9. ibm-watson
    10. personality-text-summary
+   11. react-event-timeline
+   12. Material-UI
 
 ## Design tools
 
