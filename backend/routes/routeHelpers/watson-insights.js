@@ -28,17 +28,17 @@ const getTextSummary = (personalityProfile) => {
   }
 };
 
-// Makes API call, then calls getTextSummary on raw response data *** Logs result to console
+// Makes API call, then calls getTextSummary on raw response data 
 const getInsights = (inputData) => {
-  return new Promise((resolve) => {
+  return new Promise((resolve, reject) => {
     personalityInsights.profile(inputData, function (error, response) {
       if (error) {
-        console.log("Error:", error);
+        reject(error);
       } else {
         resolve(getTextSummary(response.result));
       }
     });
-  }).catch((err) => console.log(err));
+  });
 };
 
 module.exports = { getInsights };

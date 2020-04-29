@@ -43,8 +43,7 @@ router.post("/", (req, res) => {
 
 // Delete specific goal
 router.delete("/", (req, res) => {
-  console.log('req.body', req.body);
-  db.user_goal.destroy({
+    db.user_goal.destroy({
     where: {
       id: req.body.id
     }
