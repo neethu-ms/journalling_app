@@ -38,10 +38,10 @@ export default function QuestionFeed(props) {
   return  (
     <section>
       <Container className="questions">
-      <h2 className="title">Question feed</h2>
-      <hr/>
+      <h2 className="title">Question Feed</h2>
+    
       {questionsList}
-      <hr/>
+     
       </Container>
     </section>
   )

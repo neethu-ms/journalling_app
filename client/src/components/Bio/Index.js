@@ -42,6 +42,7 @@ import "../../styles/Bio.scss";
 
     {mode === USERBIO && (
       <UserBio 
+      level={props.level}
         bio={props.bio}
         onClick={()=>  {
           if (props.level > 9) {

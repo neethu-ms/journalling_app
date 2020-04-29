@@ -15,7 +15,7 @@ export default function Wall(props) {
 
   return (
     <Container className ="timeline">
-      <h2 className="title">Previous Goals</h2>
+      <h2 className="title">Timeline</h2>
       <Timeline lineStyle={styles.lineStyle}>
         {userGoalsView}
       </Timeline>
