@@ -1,6 +1,6 @@
 import React from 'react';
 import WallItem from './WallItem';
-import { Timeline, TimelineEvent } from 'react-event-timeline'
+import { Timeline} from 'react-event-timeline'
 import  {styles}  from './WallStyles';
 import '../styles/Wall.scss';
 import { Container } from '@material-ui/core';
@@ -15,7 +15,7 @@ export default function Wall(props) {
 
   return (
     <Container className ="timeline">
-      <h2 className="title">Previous Goals</h2>
+      <h2 className="title">Timeline</h2>
       <Timeline lineStyle={styles.lineStyle}>
         {userGoalsView}
       </Timeline>

@@ -15,8 +15,13 @@
   background-color: green;
 }
 
+.user-bio{
+  display: flex;
+  alignItems: center;
+}
 
 .user-bio > button{
-  align-items: center;
+  display:flex;
+  alignItems: center;
 
 }

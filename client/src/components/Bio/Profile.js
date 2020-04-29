@@ -4,11 +4,10 @@ import { Container } from '@material-ui/core';
 
 export default function UserBio(props) {
   return (
-    <aside className="" id="">
+    <aside>
       <Container>
-        <section className="prompt__actions card_right">
-          <h4 className="">Level: {props.level}</h4>
-        </section>
+        <h4>Level: {props.level}</h4>
+        <p>{props.bio}</p>
       </Container>
     </aside>
   );

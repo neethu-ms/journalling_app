@@ -34,6 +34,7 @@ import "../../styles/Bio.scss";
       <Container className="bioContainer">
     <section>
       <Profile 
+      bio = {props.bio}
       level={props.level}
       />
     </section>
@@ -42,6 +43,7 @@ import "../../styles/Bio.scss";
 
     {mode === USERBIO && (
       <UserBio 
+      level={props.level}
         bio={props.bio}
         onClick={()=>  {
           if (props.level > 9) {
