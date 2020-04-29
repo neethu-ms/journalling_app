@@ -7,10 +7,7 @@ import "./LogoutPrompt.scss";
 import useApplicationData from "../hooks/useApplicationData";
 import { Container } from '@material-ui/core';
 import "./Application.scss";
-
-
 export default function Application() {
-
   const {
     logInUser,
     logoutUser,
@@ -27,13 +24,19 @@ export default function Application() {
   const userObj = state.users.filter((user) => user.id === state.currentUser)[0]; // Gets current user object
   console.log("userObj,userObj");
   let level;
+  let extraPoints = 0;
   if (userObj) {
-    const computedLevel = Math.floor(userObj.points / 10);
-    level = (computedLevel>=1?computedLevel:1).toFixed(); // Level is computed from points
+    if(userObj.points > 100){
+      extraPoints = userObj.points - 100;
+    }
+    //Initial level is 1 and will lead to level 2 once user earns 20 points.
+    let computedLevel = Math.floor((userObj.points-extraPoints) / 10);  // Till level 10, earning 10 points will lead to next level starting from level 2
+    computedLevel = computedLevel + Math.floor((extraPoints) / 100); // After level 10, earning 100 points will lead to next level
+    level = (computedLevel>=1?computedLevel:1).toFixed(); // Level is computed from points. 
     console.log("level",level);
   }
 
-  const filteredGoals = state.goals.slice(0, level);
+  const filteredGoals = state.goals.slice(0, level<=15?level:15);
   const questionsArr = filteredGoals.map((goal) => goal.question);
 
   return (

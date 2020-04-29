@@ -26,8 +26,7 @@ router.get("/:id", (req, res) => {
 
 //Create  biodata
 router.post("/", (req, res) => {
-  console.log(db.biodata);
-  db.biodata.create({
+   db.biodata.create({
     name:req.body.name, text:req.body.text,
     user_id: req.body.user_id,
     createdAt: new Date().toISOString(),

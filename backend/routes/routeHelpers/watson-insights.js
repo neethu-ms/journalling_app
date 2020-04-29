@@ -1,15 +1,14 @@
 require("dotenv").config();
-const PersonalityInsightsV3 = require('ibm-watson/personality-insights/v3');
-const { IamAuthenticator } = require('ibm-watson/auth');
-const PersonalityTextSummaries = require('personality-text-summary');
+const PersonalityInsightsV3 = require("ibm-watson/personality-insights/v3");
+const { IamAuthenticator } = require("ibm-watson/auth");
+const PersonalityTextSummaries = require("personality-text-summary");
 const v3EnglishTextSummaries = new PersonalityTextSummaries({
-  locale: 'en',
-  version: 'v3'
+  locale: "en",
+  version: "v3",
 });
 
 // Run npm install to include all dependencies
 // Add credentials to .env file in backend directory
-
 
 // Establish connection with API
 const personalityInsights = new PersonalityInsightsV3({
@@ -21,33 +20,25 @@ const personalityInsights = new PersonalityInsightsV3({
 });
 
 // Convert raw response data in Paragraph-form summary
-const getTextSummary = personalityProfile => {
-  console.log('profile=',personalityProfile);
+const getTextSummary = (personalityProfile) => {
   let textSummary = v3EnglishTextSummaries.getSummary(personalityProfile);
-  if (typeof (textSummary) !== 'string') {
-    console.log("Could not get summary.");
+  if (typeof textSummary !== "string") {
   } else {
     return textSummary;
   }
 };
 
 // Makes API call, then calls getTextSummary on raw response data *** Logs result to console
-const getInsights = inputData => {
-  return new Promise(resolve => {
-    personalityInsights.profile(inputData, function(error, response) {
-    if (error) {
-       console.log('Error:', error);
-    } else {
-      //console.log("result=",response.result);
-       resolve(getTextSummary(response.result))
+const getInsights = (inputData) => {
+  return new Promise((resolve) => {
+    personalityInsights.profile(inputData, function (error, response) {
+      if (error) {
+        console.log("Error:", error);
+      } else {
+        resolve(getTextSummary(response.result));
       }
-    })
-  })
-  //.then(x => console.log(getTextSummary(x.result)))
-  .catch(err => console.log(err));
-}
+    });
+  }).catch((err) => console.log(err));
+};
 
-// Call getInsight (log result to console)
-//getInsights(params)
-
-module.exports = { getInsights }
+module.exports = { getInsights };

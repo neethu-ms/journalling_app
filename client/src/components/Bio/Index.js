@@ -20,8 +20,7 @@ import "../../styles/Bio.scss";
     const { mode, transition, back } = useVisualMode(USERBIO);
 
     const loadInsight = () => {
-      console.log("CLICKED: ", props.currentUserGoals )
-        props.requestInsight(props.currentUserGoals)
+             props.requestInsight(props.currentUserGoals)
         .then(()=> {
           transition(INSIGHTS)
         })
