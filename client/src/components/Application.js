@@ -33,7 +33,7 @@ export default function Application() {
     console.log("level",level);
   }
 
-  const filteredGoals = state.goals.slice(0, level);
+  const filteredGoals = state.goals.slice(0, level<=15?level:15);
   const questionsArr = filteredGoals.map((goal) => goal.question);
 
   return (
