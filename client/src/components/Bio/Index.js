@@ -34,6 +34,7 @@ import "../../styles/Bio.scss";
       <Container className="bioContainer">
     <section>
       <Profile 
+      bio = {props.bio}
       level={props.level}
       />
     </section>

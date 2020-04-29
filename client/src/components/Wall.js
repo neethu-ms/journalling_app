@@ -1,6 +1,6 @@
 import React from 'react';
 import WallItem from './WallItem';
-import { Timeline, TimelineEvent } from 'react-event-timeline'
+import { Timeline} from 'react-event-timeline'
 import  {styles}  from './WallStyles';
 import '../styles/Wall.scss';
 import { Container } from '@material-ui/core';

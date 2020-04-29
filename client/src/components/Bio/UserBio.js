@@ -23,8 +23,7 @@ export default function UserBio(props) {
   const classes = useStyles();
   return (
     <Container className={classes.bioContainer}>
-     
-      <p>{props.bio}</p>
+      
       <Button
         variant="contained"
         color="secondary"

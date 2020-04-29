@@ -1,5 +1,5 @@
 import React from "react";
-import {Button} from '@material-ui/core';
+import {Button, Container} from '@material-ui/core';
 import { makeStyles } from '@material-ui/core/styles';
 const useStyles = makeStyles({
   btnColor:{
@@ -14,12 +14,7 @@ const useStyles = makeStyles({
 export default function Error(props) {
   const classes = useStyles();
   return (
-    <main className="">
-      <img
-        className=""
-        src="images/status.png"
-        alt="Keep it up!"
-      />
+     <Container>
       <h4 className="">{props.message}</h4>
       <Button 
        variant="contained" 
@@ -28,6 +23,6 @@ export default function Error(props) {
        onClick={props.onCancel}>
          BACK
       </Button>
-    </main>
+      </Container>
   );
 }
