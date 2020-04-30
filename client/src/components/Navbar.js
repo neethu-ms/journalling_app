@@ -39,7 +39,7 @@ export default function Navbar(props) {
     background: "#03A9F4",
     position: "fixed",
     top: "0",
-    width: "100%",
+    width: "100%"
   };
   const [open, setOpen] = useState(false);
   const [action, setAction] = useState("");
