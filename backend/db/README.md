@@ -21,11 +21,9 @@ goals (id(pk), question, suggestion)
 npx sequelize-cli model:generate --name goal --attributes question:string,suggestion:string
 
 6. npx sequelize-cli db:migrate
-
 7. Create associations
    npx sequelize-cli migration:generate --name biodata-user-add-associations
-
-8.  npx sequelize-cli db:migrate
+8. npx sequelize-cli db:migrate
 9.  npx sequelize-cli migration:generate --name biodata-user-add-associations
 10. npx sequelize-cli db:migrate
 11. npx sequelize-cli migration:generate --name user_goals-add-associations
@@ -39,7 +37,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
-      Return a promise to correctly handle asynchronicity. */
+Return a promise to correctly handle asynchronicity.*/
 
     return queryInterface.bulkInsert('users', [{
       handle: '@john',
@@ -59,14 +57,13 @@ module.exports = {
 };
 
 13. npx sequelize-cli db:seed:all
-
 14. npx sequelize-cli seed:generate --name demo-biodata
 
 module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
-      Return a promise to correctly handle asynchronicity. */
+Return a promise to correctly handle asynchronicity.*/
 
     return queryInterface.bulkInsert('biodata', [{
       id:1,
@@ -86,7 +83,7 @@ module.exports = {
   up: (queryInterface, Sequelize) => {
     /*
       Add altering commands here.
-      Return a promise to correctly handle asynchronicity. */
+Return a promise to correctly handle asynchronicity.*/
 
     return queryInterface.bulkInsert('goals', [{
       id:1,
