@@ -27,12 +27,19 @@ const useStyles = makeStyles((theme) => ({
   title: {
     flexGrow: 1,
   },
+
+  logo: {
+    top: 30,
+  },
 }));
 
 export default function Navbar(props) {
   const classes = useStyles();
   const style = {
     background: "#03A9F4",
+    position: "fixed",
+    top: "0",
+    width: "100%",
   };
   const [open, setOpen] = useState(false);
   const [action, setAction] = useState("");
@@ -178,7 +185,7 @@ export default function Navbar(props) {
         </Dialog>
       )}
       {!loggedIn && (
-        <Container id="logo" maxWidth="sm md lg">
+        <Container className="logo" maxWidth="sm md lg">
           <img
             height="40%px"
             width="70%"
