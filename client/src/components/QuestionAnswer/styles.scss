@@ -4,9 +4,21 @@
 
 $prompt-height: 1rem;
 
-#logo{
- text-align:center;
+// For smaller displays
+@media(max-width:760px){
+  .logo{
+    text-align: center;
+     margin-top:60px;
+    }
 }
+// For larger displays
+@media(min-width:760px){
+.logo{
+text-align: center;
+ margin-top:20px;
+}
+}
+
 
 
 .questions{

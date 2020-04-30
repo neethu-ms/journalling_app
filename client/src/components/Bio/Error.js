@@ -9,13 +9,17 @@ const useStyles = makeStyles({
       
     }
     
+  },
+
+  errorStyle:{
+       color:  "red"  
   }
 });
 export default function Error(props) {
   const classes = useStyles();
   return (
      <Container>
-      <h4 className="">{props.message}</h4>
+      <h4 className={classes.errorStyle}>{props.message}</h4>
       <Button 
        variant="contained" 
            color="secondary"

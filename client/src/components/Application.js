@@ -71,7 +71,9 @@ export default function Application() {
             expanded={state.expanded}
             answer = {state.answer}
           />
+          {state.currentUserGoals.length > 0 && (
           <Wall userGoals={state.currentUserGoals} userId={state.currentUser} handleDelete={handleDelete} />
+          )}
         </section>
       )}
       {state.currentUser === null && (

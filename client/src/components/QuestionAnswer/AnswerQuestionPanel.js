@@ -23,7 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   formStyle: {
-    backgroundColor: "#81d4fa",
+   // backgroundColor: "#81d4fa",
+    background:"linear-gradient(to bottom left, #66ccff 6%, #ffffff 106%)"
   },
 
   topo: {
