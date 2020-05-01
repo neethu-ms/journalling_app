@@ -31,7 +31,7 @@ export default function useApplicationData() {
           users: all[3].data,
         }));
       })
-      .catch((err) => err.message);
+      .catch((err) => "Failed in initial api fetch:"+err.message);
   }, []);
 
   // Set current user goals
@@ -58,22 +58,17 @@ export default function useApplicationData() {
 
   // Set user points
   const setPoints = function (id, points) {
-    let newPoints = state.users.filter(
-      (user) => user.id === id
-    )[0].points;
+    let newPoints = state.users.filter((user) => user.id === id)[0].points;
     newPoints += points;
 
     axios
       .put(`/api/users`, { points: newPoints, id })
       .then((result) => {
-        console.log("points:", points);
-        state.users.filter(
-          (user) => user.id === id
-        )[0].points = newPoints;
+        state.users.filter((user) => user.id === id)[0].points = newPoints;
       })
-      .catch((err) => console.log("error"));
+      .catch((err) => "Failed in setting user points:" + err.message);
   };
- 
+
   // Adding new goal
   const addUserGoal = function (goal) {
     goal.user_id = state.currentUser;
@@ -91,12 +86,11 @@ export default function useApplicationData() {
 
         setPoints(state.currentUser, result.data.answer.split(" ").length);
       })
-      .catch((err) => console.log("error"));
+      .catch((err) => "Failed in adding new goal:"+err.message);
   };
 
   //handleDelete
   const handleDelete = (id) => {
-    console.log("id=", id);
     let userGoal = {};
     userGoal.id = id;
     axios
@@ -109,13 +103,12 @@ export default function useApplicationData() {
           userGoals: newUserGoals,
         }));
 
-        console.log("result=", result);
         const answer = state.currentUserGoals.filter(
           (goal) => goal.id === id
         )[0].answer;
         setPoints(state.currentUser, -1 * answer.split(" ").length);
       })
-      .catch((err) => console.log("error"));
+      .catch((err) => "Failed in delete" + err.message);
   };
 
   // Create new user
@@ -152,10 +145,10 @@ export default function useApplicationData() {
                 biodatas: newBiodatas,
               }));
             })
-            .catch((err) => console.log("error"));
+            .catch((err) => "Failed in adding biodata:"+err.message);
         }
       })
-      .catch((err) => console.log("error"));
+      .catch((err) => "Failed in creating user:"+err.message);
   };
 
   // set expanded
@@ -198,16 +191,16 @@ export default function useApplicationData() {
 
   //Fetch insights
   const requestInsight = (currentUserGoals) => {
-    return Promise.resolve(
-      axios
+    
+      return axios
         .post("/api/userInsight", {
           body: currentUserGoals,
         })
         .then((response) => {
           setInsight(response.data);
         })
-        .catch((err) => console.log(err))
-    );
+        .catch((err) => "Failed in  fetching insights:"+err.message);
+    
   };
 
   return {

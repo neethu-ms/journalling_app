@@ -44,8 +44,7 @@ router.post("/", (req, res) => {
 
 //Update  user score
 router.put("/", (req, res) => {
-  console.log("req",req.body.points);
-  db.user.update({
+   db.user.update({
     points:req.body.points},
     {where: {id:req.body.id}}
     )
