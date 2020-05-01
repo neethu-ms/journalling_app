@@ -6,7 +6,6 @@ import ExpansionPanelDetails from "@material-ui/core/ExpansionPanelDetails";
 import Typography from "@material-ui/core/Typography";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import Form from "./Form";
-import "../../styles/questionAnswer.scss";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -23,8 +22,7 @@ const useStyles = makeStyles((theme) => ({
   },
 
   formStyle: {
-    // backgroundColor: "#81d4fa",
-    background: "linear-gradient(to bottom left, #66ccff 6%, #ffffff 106%)",
+        background: "linear-gradient(to bottom left, #66ccff 6%, #ffffff 106%)",
   },
 
   topo: {
