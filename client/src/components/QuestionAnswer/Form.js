@@ -1,35 +1,37 @@
-import React from "react";
-import Button from '@material-ui/core/Button';
-import TextField from '@material-ui/core/TextField';
+import React, { useState } from "react";
+import Button from "@material-ui/core/Button";
+import TextField from "@material-ui/core/TextField";
 
 export default function Form(props) {
+  const [answer, setAnswer] = useState("");
   return (
-    <main >
+    <main>
       <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
         <TextField
           id="filled-textarea"
-          //label={props.suggestion}
+          value={answer}
           placeholder={props.suggestion}
           multiline
           fullWidth
-          value={props.answer}
           variant="filled"
-          onChange={(e) => props.setAnswer(e.target.value)}
+          onChange={(e) => {
+            props.setAnswer(e.target.value);
+            setAnswer(e.targetValue);
+          }}
         />
         <Button
           variant="outlined"
           color="primary"
           size="large"
-          onClick={() => {
+          onClick={(e) => {
             props.setExpanded(props.goal_id);
             props.addUserGoal({ goal_id: props.goal_id });
             props.setAnswer("");
-
-          }
-          }
+            setAnswer("");
+          }}
         >
           Answer
-      </Button>
+        </Button>
       </form>
     </main>
   );
