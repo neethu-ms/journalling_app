@@ -69,8 +69,7 @@ export default function Application() {
             createUser={createUser}
             setExpanded={setExpanded}
             expanded={state.expanded}
-            answer = {state.answer}
-          />
+                      />
           {state.currentUserGoals.length > 0 && (
           <Wall userGoals={state.currentUserGoals} userId={state.currentUser} handleDelete={handleDelete} />
           )}

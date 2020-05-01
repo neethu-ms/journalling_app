@@ -23,8 +23,8 @@ const useStyles = makeStyles((theme) => ({
   },
 
   formStyle: {
-   // backgroundColor: "#81d4fa",
-    background:"linear-gradient(to bottom left, #66ccff 6%, #ffffff 106%)"
+    // backgroundColor: "#81d4fa",
+    background: "linear-gradient(to bottom left, #66ccff 6%, #ffffff 106%)",
   },
 
   topo: {
@@ -53,12 +53,10 @@ export default function AnswerQuestionPanel(props) {
             setAnswer={props.setAnswer}
             goal_id={props.goal_id}
             addUserGoal={props.addUserGoal}
-            giveAnswer={props.giveAnswer}
             suggestion={props.suggestion}
             currentUserId={props.currentUserId}
             goalId={props.goalId}
             setExpanded={props.setExpanded}
-            answer={props.answer}
           />
         </Typography>
       </ExpansionPanelDetails>
