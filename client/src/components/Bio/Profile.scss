@@ -1,18 +1,9 @@
-@import "../../styles/variables.scss";
-@import "../../styles/mixins.scss";
-
 .seperator{
   width: 100%;
   margin: 1rem 0;
   border: solid 1px;
-  color: $indezone-yellow;
+  color:  #fae105;
 }
-
-.levelStyle{
-  background-color:blue;
-  height: 50px;
-  width:50px;
-  }
 
 
   @media(max-width:760px){
