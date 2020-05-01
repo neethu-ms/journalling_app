@@ -72,8 +72,7 @@ export default function Navbar(props) {
 
   // Handle logout
   const handleLogout = function () {
-    console.log("props=", props);
-    props.logoutUser();
+      props.logoutUser();
     setLoggedIn(false);
     handleClose();
   };
