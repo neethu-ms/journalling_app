@@ -143,7 +143,8 @@ export default function useApplicationData() {
           ...state,
           users: newUsers,
           currentUser: result.data.id,
-        }));
+        }))
+      }).then(() => {
         if (biodata != null) {
           axios
             .post(`/api/biodatas`, biodataObj)
@@ -157,6 +158,7 @@ export default function useApplicationData() {
             })
             .catch((err) => "Failed in adding biodata:" + err.message);
         }
+        return true;
       })
       .catch((err) => "Failed in creating user:" + err.message);
   };
