@@ -31,7 +31,7 @@ export default function useApplicationData() {
           users: all[3].data,
         }));
       })
-      .catch((err) => "Failed in initial api fetch:"+err.message);
+      .catch((err) => "Failed in initial api fetch:" + err.message);
   }, []);
 
   // Set current user goals
@@ -86,7 +86,7 @@ export default function useApplicationData() {
 
         setPoints(state.currentUser, result.data.answer.split(" ").length);
       })
-      .catch((err) => "Failed in adding new goal:"+err.message);
+      .catch((err) => "Failed in adding new goal:" + err.message);
   };
 
   //handleDelete
@@ -145,10 +145,10 @@ export default function useApplicationData() {
                 biodatas: newBiodatas,
               }));
             })
-            .catch((err) => "Failed in adding biodata:"+err.message);
+            .catch((err) => "Failed in adding biodata:" + err.message);
         }
       })
-      .catch((err) => "Failed in creating user:"+err.message);
+      .catch((err) => "Failed in creating user:" + err.message);
   };
 
   // set expanded
@@ -164,42 +164,36 @@ export default function useApplicationData() {
 
   // set user state
   const logInUser = (email, password) => {
-      const checkUser = {
+    const checkUser = {
       email,
-      password
-    }
-    
-    return axios.post('/api/login',checkUser).then(user => {
-      console.log('user=',user.data);
-      console.log('user=',user.data && (user.data.id > 0))
-        if(user.data && user.data.id && user.data.id > 0){
+      password,
+    };
+
+    return axios
+      .post("/api/login", checkUser)
+      .then((user) => {
+        if (user.data && user.data.id && user.data.id > 0) {
           setState((state) => ({
             ...state,
-            currentUser: user.data.id
+            currentUser: user.data.id,
           }));
-          console.log('in if');
-          console.log('state',state.currentUser);
-           return true;
-        }else{
-          console.log('in else');
-          console.log('state',state.currentUser);
+          return true;
+        } else {
           return false;
         }
-
-        
-    })
-    .catch(err => false);
+      })
+      .catch((err) => false);
   };
 
   // reset user state
   const logoutUser = () => {
-    return axios.post('/api/logout').then(() => {
+    return axios.post("/api/logout").then(() => {
       setState((state) => ({
         ...state,
-        currentUser: null
+        currentUser: null,
       }));
-    })
-    
+    });
+
     //return state.currentUser;
   };
 
@@ -209,16 +203,14 @@ export default function useApplicationData() {
 
   //Fetch insights
   const requestInsight = (currentUserGoals) => {
-    
-      return axios
-        .post("/api/userInsight", {
-          body: currentUserGoals,
-        })
-        .then((response) => {
-          setInsight(response.data);
-        })
-        .catch((err) => "Failed in  fetching insights:"+err.message);
-    
+    return axios
+      .post("/api/userInsight", {
+        body: currentUserGoals,
+      })
+      .then((response) => {
+        setInsight(response.data);
+      })
+      .catch((err) => "Failed in  fetching insights:" + err.message);
   };
 
   return {
@@ -231,6 +223,6 @@ export default function useApplicationData() {
     createUser,
     handleDelete,
     setExpanded,
-    setPoints
+    setPoints,
   };
 }
