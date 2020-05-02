@@ -45,6 +45,8 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
    10. personality-text-summary
    11. react-event-timeline
    12. Material-UI
+   13. bcrypt
+   14. cookie-session
 
 ## Design tools
 
