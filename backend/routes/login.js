@@ -31,4 +31,13 @@ router.post("/", (req, res) => {
     });
 });
 
+//
+router.get("/", (req, res) => {
+  if(req.session && req.session.email){
+      res.json(req.session.email);
+  }else{
+    res.json(false);
+  }
+});
+
 module.exports = router;

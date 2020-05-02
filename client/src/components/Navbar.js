@@ -46,7 +46,7 @@ export default function Navbar(props) {
   const [email, setEmail] = useState("");
   const [biodata, setBiodata] = useState("");
   const [password, setPassword] = useState("");
-  const [loggedIn, setLoggedIn] = useState(false);
+  //const [loggedIn, setLoggedIn] = useState(false);
   const handleClickOpen = (actionWord) => {
     setOpen(true);
     setAction(actionWord);
@@ -61,21 +61,23 @@ export default function Navbar(props) {
     if (action === "Login") {
       props.logInUser(email, password).then((data) => {
         if (data) {
-          setLoggedIn(true);
+          //setLoggedIn(true);
           handleClose();
         }
       });
     } else {
-      props.createUser(email, password, biodata);
-      setLoggedIn(true);
-      handleClose();
+      props.createUser(email, password, biodata).then(() => {
+        //setLoggedIn(true);
+        handleClose();
+      });
+     
     }
   };
 
   // Handle logout
   const handleLogout = function () {
     props.logoutUser().then(() => {
-      setLoggedIn(false);
+      //setLoggedIn(false);
       handleClose();
   }
     )
@@ -97,7 +99,7 @@ export default function Navbar(props) {
           <Typography variant="h6" className={classes.title}>
             Indezone Journaling
           </Typography>
-          {!loggedIn && (
+          {!props.user && (
             <div>
               <Button
                 color="inherit"
@@ -113,7 +115,7 @@ export default function Navbar(props) {
               </Button>
             </div>
           )}
-          {loggedIn && (
+          {props.user && (
             <div>
               <h4 disabled={true}>Welcome {email}</h4>
               <Button
@@ -126,7 +128,7 @@ export default function Navbar(props) {
           )}
         </Toolbar>
       </AppBar>
-      {!loggedIn && (
+      {!props.user && (
         <Dialog
           open={open}
           onClose={handleClose}
@@ -173,7 +175,7 @@ export default function Navbar(props) {
         </Dialog>
       )}
 
-      {loggedIn && (
+      {props.user && (
         <Dialog
           open={open}
           onClose={handleClose}
@@ -188,7 +190,7 @@ export default function Navbar(props) {
           </DialogActions>
         </Dialog>
       )}
-      {!loggedIn && (
+      {!props.user && (
         <Container className="logo" maxWidth="sm md lg">
           <img
             height="40%px"
