@@ -133,7 +133,7 @@ export default function useApplicationData() {
     biodataObj.text = biodata;
     biodataObj.user_id = null;
 
-    axios
+    return axios
       .post(`/api/users`, user)
       .then((result) => {
         const newUsers = [...state.users, result.data];

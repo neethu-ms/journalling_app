@@ -19,6 +19,8 @@ export default function Application() {
     setExpanded,
   } = useApplicationData(); // Gets required functions and state information
 
+  
+
   const bio = state.biodatas.filter(
     (biodata) => biodata.user_id === state.currentUser
   )[0]; // Gets biodata for current user
