@@ -164,25 +164,43 @@ export default function useApplicationData() {
 
   // set user state
   const logInUser = (email, password) => {
-    const user = state.users.filter(
-      (user) => user.email === email && user.password === password
-    )[0];
-    if (user) {
-      setState({
-        ...state,
-        currentUser: user.id,
-      });
+      const checkUser = {
+      email,
+      password
     }
-    return user;
+    
+    return axios.post('/api/login',checkUser).then(user => {
+      console.log('user=',user.data);
+      console.log('user=',user.data && (user.data.id > 0))
+        if(user.data && user.data.id && user.data.id > 0){
+          setState((state) => ({
+            ...state,
+            currentUser: user.data.id
+          }));
+          console.log('in if');
+          console.log('state',state.currentUser);
+           return true;
+        }else{
+          console.log('in else');
+          console.log('state',state.currentUser);
+          return false;
+        }
+
+        
+    })
+    .catch(err => false);
   };
 
   // reset user state
   const logoutUser = () => {
-    setState({
-      ...state,
-      currentUser: null,
-    });
-    return state.currentUser;
+    return axios.post('/api/logout').then(() => {
+      setState((state) => ({
+        ...state,
+        currentUser: null
+      }));
+    })
+    
+    //return state.currentUser;
   };
 
   //set insights
@@ -213,6 +231,6 @@ export default function useApplicationData() {
     createUser,
     handleDelete,
     setExpanded,
-    setPoints,
+    setPoints
   };
 }

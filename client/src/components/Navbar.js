@@ -59,11 +59,14 @@ export default function Navbar(props) {
   // Handle submit
   const handleSubmit = function () {
     if (action === "Login") {
-      if (props.logInUser(email, password)) {
-        setLoggedIn(true);
-        handleClose();
-      }
-    } else {
+      props.logInUser(email, password).then(data => {
+        if(data){
+          setLoggedIn(true);
+          handleClose();
+        }
+      });
+    }
+    else {
       props.createUser(email, password, biodata);
       setLoggedIn(true);
       handleClose();
