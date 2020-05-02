@@ -46,7 +46,6 @@ export default function Navbar(props) {
   const [email, setEmail] = useState("");
   const [biodata, setBiodata] = useState("");
   const [password, setPassword] = useState("");
-  //const [loggedIn, setLoggedIn] = useState(false);
   const handleClickOpen = (actionWord) => {
     setOpen(true);
     setAction(actionWord);
@@ -61,27 +60,21 @@ export default function Navbar(props) {
     if (action === "Login") {
       props.logInUser(email, password).then((data) => {
         if (data) {
-          //setLoggedIn(true);
           handleClose();
         }
       });
     } else {
       props.createUser(email, password, biodata).then(() => {
-        //setLoggedIn(true);
         handleClose();
       });
-     
     }
   };
 
   // Handle logout
   const handleLogout = function () {
     props.logoutUser().then(() => {
-      //setLoggedIn(false);
       handleClose();
-  }
-    )
-    
+    });
   };
 
   return (
