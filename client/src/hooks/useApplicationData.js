@@ -187,12 +187,15 @@ export default function useApplicationData() {
 
   // reset user state
   const logoutUser = () => {
-    return axios.post("/api/logout").then(() => {
+    return axios.post("/api/logout").then((data) => {
+     
       setState((state) => ({
         ...state,
         currentUser: null,
       }));
-    });
+      return true;
+    })
+    .catch((err) => "Failed in logout user:" + err.message);
 
     //return state.currentUser;
   };
