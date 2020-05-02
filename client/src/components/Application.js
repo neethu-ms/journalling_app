@@ -78,7 +78,7 @@ export default function Application() {
           )}
         </section>
       )}
-      {state.currentUser === null && (
+      {!state.currentUser && (
         <section>
           <Container>
             <h3 className="intro">

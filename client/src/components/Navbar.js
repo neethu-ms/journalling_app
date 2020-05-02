@@ -186,7 +186,7 @@ export default function Navbar(props) {
       {!props.user && (
         <Container className="logo" maxWidth="sm md lg">
           <img
-            height="40%px"
+            height="40%"
             width="70%"
             align="center"
             src="images/indezone-journal-hero.png"
