@@ -21,6 +21,7 @@ export default function useApplicationData() {
       axios.get("/api/goals"),
       axios.get("/api/biodatas"),
       axios.get("/api/users"),
+      axios.get("/api/login"),
     ])
       .then((all) => {
         setState((state) => ({
@@ -29,6 +30,7 @@ export default function useApplicationData() {
           goals: all[1].data,
           biodatas: all[2].data,
           users: all[3].data,
+          currentUser: (all[4].data?all[3].data.filter(user=> user.email === all[4].data)[0].id:null)
         }));
       })
       .catch((err) => "Failed in initial api fetch:" + err.message);
@@ -196,8 +198,7 @@ export default function useApplicationData() {
       return true;
     })
     .catch((err) => "Failed in logout user:" + err.message);
-
-    //return state.currentUser;
+    
   };
 
   //set insights
