@@ -10,8 +10,18 @@ var goalsRouter = require('./routes/goals');
 var biodatasRouter = require('./routes/biodatas');
 var userGoalsRouter = require('./routes/userGoals');
 var userInsightRouter = require('./routes/userInsight');
+var loginRouter = require('./routes/login');
+var logoutRouter = require('./routes/logout');
+var cookieSession = require('cookie-session');
 
 var app = express();
+//cookie
+app.use(
+  cookieSession({
+    name: "session",
+    keys: ["12345A"]
+  })
+);
 
 app.use(cors())
 app.use(logger('dev'));
@@ -26,6 +36,8 @@ app.use('/api/goals', goalsRouter);
 app.use('/api/biodatas', biodatasRouter);
 app.use('/api/userGoals', userGoalsRouter);
 app.use('/api/userInsight', userInsightRouter);
+app.use('/api/login', loginRouter);
+app.use('/api/logout', logoutRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
