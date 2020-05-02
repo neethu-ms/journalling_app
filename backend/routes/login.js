@@ -16,7 +16,7 @@ router.post("/", (req, res) => {
         .compare(req.body.password, user.dataValues.password)
         .then((data) => {
           if (data) {
-            req.session.email = req.body.email;
+            req.session.id= user.dataValues.id;
             return res.json(user.dataValues);
           } else {
             return null;
@@ -33,8 +33,8 @@ router.post("/", (req, res) => {
 
 //
 router.get("/", (req, res) => {
-  if(req.session && req.session.email){
-      res.json(req.session.email);
+  if(req.session && req.session.id){
+      res.json(req.session.id);
   }else{
     res.json(false);
   }

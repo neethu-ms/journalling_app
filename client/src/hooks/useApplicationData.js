@@ -16,12 +16,21 @@ export default function useApplicationData() {
   });
 
   useEffect(() => {
+    axios
+      .get("/api/login")
+      .then((userId) => {
+        setState((state) => ({
+          ...state,
+          currentUser: userId.data,
+        }));
+      })
+      .catch((err) => "Failed in initial api fetch:" + err.message);
+
     Promise.all([
       axios.get("/api/userGoals"),
       axios.get("/api/goals"),
       axios.get("/api/biodatas"),
       axios.get("/api/users"),
-      axios.get("/api/login"),
     ])
       .then((all) => {
         setState((state) => ({
@@ -30,7 +39,6 @@ export default function useApplicationData() {
           goals: all[1].data,
           biodatas: all[2].data,
           users: all[3].data,
-          currentUser: (all[4].data?all[3].data.filter(user=> user.email === all[4].data)[0].id:null)
         }));
       })
       .catch((err) => "Failed in initial api fetch:" + err.message);
@@ -189,16 +197,16 @@ export default function useApplicationData() {
 
   // reset user state
   const logoutUser = () => {
-    return axios.post("/api/logout").then((data) => {
-     
-      setState((state) => ({
-        ...state,
-        currentUser: null,
-      }));
-      return true;
-    })
-    .catch((err) => "Failed in logout user:" + err.message);
-    
+    return axios
+      .post("/api/logout")
+      .then((data) => {
+        setState((state) => ({
+          ...state,
+          currentUser: null,
+        }));
+        return true;
+      })
+      .catch((err) => "Failed in logout user:" + err.message);
   };
 
   //set insights
