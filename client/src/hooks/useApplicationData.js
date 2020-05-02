@@ -31,7 +31,7 @@ export default function useApplicationData() {
           users: all[3].data,
         }));
       })
-      .catch((err) => "Failed in initial api fetch:"+err.message);
+      .catch((err) => "Failed in initial api fetch:" + err.message);
   }, []);
 
   // Set current user goals
@@ -86,7 +86,7 @@ export default function useApplicationData() {
 
         setPoints(state.currentUser, result.data.answer.split(" ").length);
       })
-      .catch((err) => "Failed in adding new goal:"+err.message);
+      .catch((err) => "Failed in adding new goal:" + err.message);
   };
 
   //handleDelete
@@ -145,10 +145,10 @@ export default function useApplicationData() {
                 biodatas: newBiodatas,
               }));
             })
-            .catch((err) => "Failed in adding biodata:"+err.message);
+            .catch((err) => "Failed in adding biodata:" + err.message);
         }
       })
-      .catch((err) => "Failed in creating user:"+err.message);
+      .catch((err) => "Failed in creating user:" + err.message);
   };
 
   // set expanded
@@ -164,25 +164,40 @@ export default function useApplicationData() {
 
   // set user state
   const logInUser = (email, password) => {
-    const user = state.users.filter(
-      (user) => user.email === email && user.password === password
-    )[0];
-    if (user) {
-      setState({
-        ...state,
-        currentUser: user.id,
-      });
-    }
-    return user;
+    const checkUser = {
+      email,
+      password,
+    };
+
+    return axios
+      .post("/api/login", checkUser)
+      .then((user) => {
+        if (user.data && user.data.id && user.data.id > 0) {
+          setState((state) => ({
+            ...state,
+            currentUser: user.data.id,
+          }));
+          return true;
+        } else {
+          return false;
+        }
+      })
+      .catch((err) => false);
   };
 
   // reset user state
   const logoutUser = () => {
-    setState({
-      ...state,
-      currentUser: null,
-    });
-    return state.currentUser;
+    return axios.post("/api/logout").then((data) => {
+     
+      setState((state) => ({
+        ...state,
+        currentUser: null,
+      }));
+      return true;
+    })
+    .catch((err) => "Failed in logout user:" + err.message);
+
+    //return state.currentUser;
   };
 
   //set insights
@@ -191,16 +206,14 @@ export default function useApplicationData() {
 
   //Fetch insights
   const requestInsight = (currentUserGoals) => {
-    
-      return axios
-        .post("/api/userInsight", {
-          body: currentUserGoals,
-        })
-        .then((response) => {
-          setInsight(response.data);
-        })
-        .catch((err) => "Failed in  fetching insights:"+err.message);
-    
+    return axios
+      .post("/api/userInsight", {
+        body: currentUserGoals,
+      })
+      .then((response) => {
+        setInsight(response.data);
+      })
+      .catch((err) => "Failed in  fetching insights:" + err.message);
   };
 
   return {

@@ -12,12 +12,15 @@ router.post("/", (req, res) => {
       where: { email: req.body.email },
     })
     .then((user) => {
-      console.log("data", user.dataValues);
       bcrypt
         .compare(req.body.password, user.dataValues.password)
-        .then(() => {
-          req.session.email = req.body.email;
-          return res.json(user.dataValues);
+        .then((data) => {
+          if (data) {
+            req.session.email = req.body.email;
+            return res.json(user.dataValues);
+          } else {
+            return null;
+          }
         })
         .catch((err) => {
           res.status(500).json({ error: err.message });

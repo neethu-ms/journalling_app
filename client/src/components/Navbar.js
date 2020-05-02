@@ -39,7 +39,7 @@ export default function Navbar(props) {
     background: "#03A9F4",
     position: "fixed",
     top: "0",
-    width: "100%"
+    width: "100%",
   };
   const [open, setOpen] = useState(false);
   const [action, setAction] = useState("");
@@ -59,10 +59,12 @@ export default function Navbar(props) {
   // Handle submit
   const handleSubmit = function () {
     if (action === "Login") {
-      if (props.logInUser(email, password)) {
-        setLoggedIn(true);
-        handleClose();
-      }
+      props.logInUser(email, password).then((data) => {
+        if (data) {
+          setLoggedIn(true);
+          handleClose();
+        }
+      });
     } else {
       props.createUser(email, password, biodata);
       setLoggedIn(true);
@@ -72,9 +74,12 @@ export default function Navbar(props) {
 
   // Handle logout
   const handleLogout = function () {
-      props.logoutUser();
-    setLoggedIn(false);
-    handleClose();
+    props.logoutUser().then(() => {
+      setLoggedIn(false);
+      handleClose();
+  }
+    )
+    
   };
 
   return (
