@@ -19,6 +19,8 @@ export default function Application() {
     setExpanded,
   } = useApplicationData(); // Gets required functions and state information
 
+  
+
   const bio = state.biodatas.filter(
     (biodata) => biodata.user_id === state.currentUser
   )[0]; // Gets biodata for current user
@@ -78,7 +80,7 @@ export default function Application() {
           )}
         </section>
       )}
-      {state.currentUser === null && (
+      {!state.currentUser && (
         <section>
           <Container>
             <h3 className="intro">

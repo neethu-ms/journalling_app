@@ -123,6 +123,7 @@ export default function useApplicationData() {
 
   // Create new user
   const createUser = function (email, password, biodata) {
+    
     const user = {};
     user.email = email;
     user.password = password;
@@ -133,7 +134,7 @@ export default function useApplicationData() {
     biodataObj.text = biodata;
     biodataObj.user_id = null;
 
-    axios
+    return axios
       .post(`/api/users`, user)
       .then((result) => {
         const newUsers = [...state.users, result.data];
@@ -143,7 +144,8 @@ export default function useApplicationData() {
           ...state,
           users: newUsers,
           currentUser: result.data.id,
-        }));
+        }))
+      }).then(() => {
         if (biodata != null) {
           axios
             .post(`/api/biodatas`, biodataObj)
@@ -157,6 +159,7 @@ export default function useApplicationData() {
             })
             .catch((err) => "Failed in adding biodata:" + err.message);
         }
+        return true;
       })
       .catch((err) => "Failed in creating user:" + err.message);
   };

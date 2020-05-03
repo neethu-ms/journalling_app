@@ -47,6 +47,7 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
    12. Material-UI
    13. bcrypt
    14. cookie-session
+   15. Node version 12
 
 ## Design tools
 
