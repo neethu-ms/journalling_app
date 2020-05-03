@@ -123,6 +123,7 @@ export default function useApplicationData() {
 
   // Create new user
   const createUser = function (email, password, biodata) {
+    
     const user = {};
     user.email = email;
     user.password = password;

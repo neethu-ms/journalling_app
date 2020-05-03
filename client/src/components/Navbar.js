@@ -183,6 +183,7 @@ export default function Navbar(props) {
           </DialogActions>
         </Dialog>
       )}
+      
       {!props.user && (
         <Container className="logo" maxWidth="sm md lg">
           <img
