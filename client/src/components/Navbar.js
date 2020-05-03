@@ -140,7 +140,7 @@ export default function Navbar(props) {
             />
             <TextField
               margin="dense"
-              id="name"
+              id="password"
               label="Password"
               type="password"
               fullWidth
@@ -149,7 +149,7 @@ export default function Navbar(props) {
             {action === "Register" && (
               <TextField
                 margin="dense"
-                id="name"
+                id="biodata"
                 label="Biodata(optional)"
                 type="text"
                 fullWidth

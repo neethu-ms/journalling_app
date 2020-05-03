@@ -13,6 +13,7 @@ var userInsightRouter = require('./routes/userInsight');
 var loginRouter = require('./routes/login');
 var logoutRouter = require('./routes/logout');
 var cookieSession = require('cookie-session');
+var resetRouter = require('./routes/reset');
 
 var app = express();
 //cookie
@@ -38,6 +39,7 @@ app.use('/api/userGoals', userGoalsRouter);
 app.use('/api/userInsight', userInsightRouter);
 app.use('/api/login', loginRouter);
 app.use('/api/logout', logoutRouter);
+app.use('/api/db/reset', resetRouter);
 
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {

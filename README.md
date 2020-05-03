@@ -31,6 +31,16 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
 
 !["Level 1 User"](docs/Level1User.png "Level 1 User")
 
+## Test cases
+
+!["Level 1 User"](docs/Level1UserCypress.png "Level 1 User")
+---
+
+!["Timeline"](docs/UserGoalsTimelineCypress.png "Timeline")
+---
+!["Get Insights"](docs/cypress-insights.png "Get Insights")
+---
+
 ## Dependencies
 
    1. React
@@ -48,6 +58,7 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
    13. bcrypt
    14. cookie-session
    15. Node version 12
+   16. cypress
 
 ## Design tools
 

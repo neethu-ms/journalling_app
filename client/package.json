@@ -24,6 +24,9 @@
     "@testing-library/react": "^8.0.9",
     "@testing-library/react-hooks": "^3.2.1",
     "cypress": "^4.5.0",
+    "cypress-multi-reporters": "^1.2.4",
+    "mocha": "^7.1.2",
+    "mochawesome": "^6.1.1",
     "react-test-renderer": "^16.13.1",
     "webpack": "4.28.3"
   },
@@ -32,7 +35,7 @@
     "build": "react-scripts build",
     "test": "react-scripts test --env=jsdom",
     "eject": "react-scripts eject",
-    "cypress":"cypress open -P ."
+    "cypress": "cypress open -P ."
   },
   "browserslist": {
     "production": [
