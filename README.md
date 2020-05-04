@@ -38,7 +38,7 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
 
 !["Timeline"](docs/TimelineCypress.png "Timeline")
 ---
-!["Get Insights"](docs/cypress-insights.png "Get Insights")
+!["Get Insights"](docs/Insights-cypress.png "Get Insights")
 ---
 
 ## Dependencies
