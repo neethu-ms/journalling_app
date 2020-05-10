@@ -64,7 +64,11 @@ export default function Navbar(props) {
         }
       });
     } else {
-      props.createUser(email, password, biodata).then(() => {
+      props.createUser(email, password, biodata).then((data) => {
+        console.log("data",data);
+        if(data === "User Already Exists"){
+          console.log("in if data",data);
+        }
         handleClose();
       });
     }
@@ -87,7 +91,7 @@ export default function Navbar(props) {
             color="inherit"
             aria-label="menu"
           >
-            <i class="fas fa-globe" aria-hidden="true"></i>
+            <i className="fas fa-globe" aria-hidden="true"></i>
           </IconButton>
           <Typography variant="h6" className={classes.title}>
             Indezone Journaling
@@ -185,7 +189,7 @@ export default function Navbar(props) {
       )}
       
       {!props.user && (
-        <Container className="logo" maxWidth="sm md lg">
+        <Container className="logo">
           <img
             height="40%"
             width="70%"
