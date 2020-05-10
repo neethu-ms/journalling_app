@@ -133,6 +133,11 @@ export default function useApplicationData() {
     biodataObj.name = biodata;
     biodataObj.text = biodata;
     biodataObj.user_id = null;
+    if(state.users.filter((user) => user.email === email).length > 0){
+      return new Promise((resolve) => {
+          resolve("User Already Exists");
+      });
+    }
 
     return axios
       .post(`/api/users`, user)
