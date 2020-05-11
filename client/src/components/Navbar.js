@@ -1,6 +1,7 @@
 import "./QuestionAnswer/styles.scss";
 import { makeStyles } from "@material-ui/core/styles";
 import React, { useState } from "react";
+import { Alert } from "@material-ui/lab";
 import {
   Button,
   TextField,
@@ -46,9 +47,11 @@ export default function Navbar(props) {
   const [email, setEmail] = useState("");
   const [biodata, setBiodata] = useState("");
   const [password, setPassword] = useState("");
+  const [message, setMessage] = useState("");
   const handleClickOpen = (actionWord) => {
     setOpen(true);
     setAction(actionWord);
+    setMessage("");
   };
 
   const handleClose = () => {
@@ -65,9 +68,10 @@ export default function Navbar(props) {
       });
     } else {
       props.createUser(email, password, biodata).then((data) => {
-        console.log("data",data);
-        if(data === "User Already Exists"){
-          console.log("in if data",data);
+        console.log("data", data);
+        if (data === "User Already Exists") {
+          console.log("in if data", data);
+          setMessage(data);
         }
         handleClose();
       });
@@ -187,7 +191,7 @@ export default function Navbar(props) {
           </DialogActions>
         </Dialog>
       )}
-      
+
       {!props.user && (
         <Container className="logo">
           <img
@@ -199,6 +203,8 @@ export default function Navbar(props) {
           />
         </Container>
       )}
+
+      {message && <Alert severity="error">Email already exists</Alert>}
     </header>
   );
 }
