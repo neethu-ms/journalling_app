@@ -46,7 +46,7 @@ export default function AnswerQuestionPanel(props) {
         <Typography className={classes.heading}>{props.question}</Typography>
       </ExpansionPanelSummary>
       <ExpansionPanelDetails className={classes.formStyle}>
-        <Typography className={classes.topo}>
+        <Typography  component={'span'} className={classes.topo}>
           <Form
             setAnswer={props.setAnswer}
             goal_id={props.goal_id}
