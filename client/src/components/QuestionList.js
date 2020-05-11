@@ -1,10 +1,6 @@
 import "./QuestionAnswer/styles.scss";
-
-import React, { useState } from "react";
-
+import React from "react";
 import AnswerQuestionPanel from "./QuestionAnswer/AnswerQuestionPanel";
-
-import Slide from "@material-ui/core/Slide";
 import { Container } from "@material-ui/core";
 
 export default function QuestionList(props) {
@@ -30,7 +26,6 @@ export default function QuestionList(props) {
     <section>
       <Container className="questions">
         <h2 className="title">Question Feed</h2>
-
         {questionsList}
       </Container>
     </section>
