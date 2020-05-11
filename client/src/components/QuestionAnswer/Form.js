@@ -5,7 +5,7 @@ import TextField from "@material-ui/core/TextField";
 export default function Form(props) {
   const [answer, setAnswer] = useState("");
   return (
-    <main>
+    
       <form autoComplete="off" onSubmit={(event) => event.preventDefault()}>
         <TextField
           id="filled-textarea"
@@ -33,6 +33,6 @@ export default function Form(props) {
           Answer
         </Button>
       </form>
-    </main>
+    
   );
 }
