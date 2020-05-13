@@ -1,6 +1,6 @@
 import axios from "axios";
 import { useState, useEffect } from "react";
-import { getCurrentUserGoals } from "../helpers/goalHelper";
+import { getCurrentUserGoals, getLevel } from "../helpers/goalHelper";
 
 export default function useApplicationData() {
   const [state, setState] = useState({
@@ -13,24 +13,27 @@ export default function useApplicationData() {
     answer: "",
     currentUserInsight: "",
     expanded: {},
+    level:1
   });
 
   useEffect(() => {
-    axios
+   /*  axios
       .get("/api/login")
       .then((userId) => {
         setState((state) => ({
           ...state,
-          currentUser: userId.data,
+          currentUser: userId.data
+          
         }));
       })
-      .catch((err) => "Failed in initial api fetch:" + err.message);
+      .catch((err) => "Failed in initial api fetch:" + err.message); */
 
     Promise.all([
       axios.get("/api/userGoals"),
       axios.get("/api/goals"),
       axios.get("/api/biodatas"),
       axios.get("/api/users"),
+      axios.get("/api/login")
     ])
       .then((all) => {
         setState((state) => ({
@@ -39,7 +42,11 @@ export default function useApplicationData() {
           goals: all[1].data,
           biodatas: all[2].data,
           users: all[3].data,
+          currentUser: all[4].data,
+          level: getLevel(all[3].data.filter(user => user.id === all[4].data)[0])
+                   
         }));
+
       })
       .catch((err) => "Failed in initial api fetch:" + err.message);
   }, []);
@@ -53,7 +60,7 @@ export default function useApplicationData() {
           state.userGoals,
           state.goals,
           state.currentUser
-        ),
+        )
       }));
     }
   }, [state.currentUser, state.userGoals]);
@@ -74,7 +81,14 @@ export default function useApplicationData() {
     axios
       .put(`/api/users`, { points: newPoints, id })
       .then((result) => {
-        state.users.filter((user) => user.id === id)[0].points = newPoints;
+        let updatedUsers = state.users;
+        updatedUsers.filter((user) => user.id === id)[0].points = newPoints;
+        setState((state) => ({
+          ...state,
+          users: updatedUsers,
+          level: getLevel(updatedUsers.filter((user) => user.id === id)[0])
+        }))
+       
       })
       .catch((err) => "Failed in setting user points:" + err.message);
   };
@@ -91,7 +105,8 @@ export default function useApplicationData() {
 
         setState((state) => ({
           ...state,
-          userGoals: newUserGoals,
+          userGoals: newUserGoals
+          
         }));
 
         setPoints(state.currentUser, result.data.answer.split(" ").length);
@@ -149,6 +164,7 @@ export default function useApplicationData() {
           ...state,
           users: newUsers,
           currentUser: result.data.id,
+          level: getLevel(user.data)
         }))
       }).then(() => {
         if (biodata != null) {
@@ -194,6 +210,7 @@ export default function useApplicationData() {
           setState((state) => ({
             ...state,
             currentUser: user.data.id,
+            level: getLevel(user.data)
           }));
           return true;
         } else {
