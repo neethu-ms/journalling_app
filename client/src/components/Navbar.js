@@ -60,6 +60,7 @@ export default function Navbar(props) {
 
   // Handle submit
   const handleSubmit = function () {
+    let valid=true;
     if (action === "Login") {
       props.logInUser(email, password).then((data) => {
         if (data) {
@@ -67,14 +68,31 @@ export default function Navbar(props) {
         }
       });
     } else {
-      props.createUser(email, password, biodata).then((data) => {
-        console.log("data", data);
-        if (data === "User Already Exists") {
-          console.log("in if data", data);
-          setMessage(data);
-        }
-        handleClose();
-      });
+      if (email === null || email === "" || email.trim().length === 0) {
+        setMessage(() => "Email or Password cannot be empty. ");
+        valid=false;
+      }
+      if (
+        password === null ||
+        password === "" ||
+        password.trim().length === 0
+      ) {
+        setMessage(() => "Email or Password cannot be empty. ");
+        valid=false;
+      }
+
+      if (email !== "" && email.trim().length !== 0 && email.indexOf("@") === -1) {
+        setMessage(() => "Invalid email id. ");
+        valid=false;
+      }
+      if (valid) {
+        props.createUser(email, password, biodata).then((data) => {
+          if (data === "User Already Exists") {
+            setMessage(() => data);
+          }
+          handleClose();
+        });
+      }
     }
   };
 
@@ -204,7 +222,7 @@ export default function Navbar(props) {
         </Container>
       )}
 
-      {message && <Alert severity="error">Email already exists</Alert>}
+      {message && <Alert severity="error">{message}</Alert>}
     </header>
   );
 }
