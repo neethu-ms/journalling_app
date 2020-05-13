@@ -60,19 +60,19 @@ export default function Navbar(props) {
 
   // Handle submit
   const handleSubmit = function () {
-    let valid=true;
+    let valid = true;
     if (action === "Login") {
       props.logInUser(email, password).then((data) => {
         if (data) {
           handleClose();
-        }else{
+        } else {
           setMessage(() => "Invalid credentials");
         }
       });
     } else {
       if (email === null || email === "" || email.trim().length === 0) {
         setMessage(() => "Email or Password cannot be empty. ");
-        valid=false;
+        valid = false;
       }
       if (
         password === null ||
@@ -80,12 +80,16 @@ export default function Navbar(props) {
         password.trim().length === 0
       ) {
         setMessage(() => "Email or Password cannot be empty. ");
-        valid=false;
+        valid = false;
       }
 
-      if (email !== "" && email.trim().length !== 0 && email.indexOf("@") === -1) {
+      if (
+        email !== "" &&
+        email.trim().length !== 0 &&
+        email.indexOf("@") === -1
+      ) {
         setMessage(() => "Invalid email id. ");
-        valid=false;
+        valid = false;
       }
       if (valid) {
         props.createUser(email, password, biodata).then((data) => {
@@ -138,7 +142,7 @@ export default function Navbar(props) {
           )}
           {props.user && (
             <div>
-              <h4 disabled={true}>Welcome {email}</h4>
+              <h4 disabled={true}>Welcome {props.email}</h4>
               <Button
                 color="inherit"
                 onClick={(event) => handleClickOpen("Logout")}

@@ -13,7 +13,8 @@ export default function useApplicationData() {
     answer: "",
     currentUserInsight: "",
     expanded: {},
-    level:1
+    level:1,
+    email:''
   });
 
   useEffect(() => {
@@ -33,7 +34,8 @@ export default function useApplicationData() {
           biodatas: all[2].data,
           users: all[3].data,
           currentUser: all[4].data,
-          level: getLevel(all[3].data.filter(user => user.id === all[4].data)[0])
+          level: getLevel(all[3].data.filter(user => user.id === all[4].data)[0]),
+          email: all[3].data.filter(user => user.id === all[4].data)[0].email
                    
         }));
 
@@ -154,7 +156,8 @@ export default function useApplicationData() {
           ...state,
           users: newUsers,
           currentUser: result.data.id,
-          level: getLevel(result.data)
+          level: getLevel(result.data),
+          email: user.email
         }))
       }).then(() => {
         if (biodata != null) {
@@ -200,7 +203,8 @@ export default function useApplicationData() {
           setState((state) => ({
             ...state,
             currentUser: user.data.id,
-            level: getLevel(user.data)
+            level: getLevel(user.data),
+            email: checkUser.email
           }));
           return true;
         } else {

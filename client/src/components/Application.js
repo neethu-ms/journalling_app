@@ -39,6 +39,7 @@ export default function Application() {
         logoutUser={logoutUser}
         user={state.currentUser}
         createUser={createUser}
+        email = {state.email}
       />
       {state.currentUser && (
         <section className="feed">
