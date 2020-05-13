@@ -6,7 +6,7 @@ import QuestionList from "./QuestionList";
 import useApplicationData from "../hooks/useApplicationData";
 import { Container } from "@material-ui/core";
 import "./Application.scss";
-import { getLevel } from '../helpers/goalHelper';
+//import { getLevel } from '../helpers/goalHelper';
 export default function Application() {
   const {
     logInUser,
@@ -17,7 +17,8 @@ export default function Application() {
     setAnswer,
     createUser,
     handleDelete,
-    setExpanded,
+    setExpanded
+    
   } = useApplicationData(); // Gets required functions and state information
 
   
@@ -25,12 +26,12 @@ export default function Application() {
   const bio = state.biodatas.filter(
     (biodata) => biodata.user_id === state.currentUser
   )[0]; // Gets biodata for current user
-  const userObj = state.users.filter(
+  /* const userObj = state.users.filter(
     (user) => user.id === state.currentUser
-  )[0]; // Gets current user object
-  const level = getLevel(userObj); // Get users level
+  )[0]; */ // Gets current user object
+  //const level = getLevel(userObj); // Get users level
  
-  const filteredGoals = state.goals.slice(0, level <= 15 ? level : 15);
+  const filteredGoals = state.goals.slice(0, state.level <= 15 ? state.level : 15);
   const questionsArr = filteredGoals.map((goal) => goal.question);
 
   return (
@@ -46,7 +47,7 @@ export default function Application() {
         <section className="feed">
           <Bio
             bio={bio ? bio.text : ""}
-            level={level}
+            level={state.level}
             requestInsight={requestInsight}
             currentUserGoals={state.currentUserGoals}
             userInsight={state.currentUserInsight}
