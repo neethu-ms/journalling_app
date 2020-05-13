@@ -65,6 +65,8 @@ export default function Navbar(props) {
       props.logInUser(email, password).then((data) => {
         if (data) {
           handleClose();
+        }else{
+          setMessage(() => "Invalid credentials");
         }
       });
     } else {
