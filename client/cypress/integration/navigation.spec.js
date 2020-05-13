@@ -52,5 +52,9 @@ describe("Navigation", () => {
     cy.contains("goal").click();
     cy.get("#filled-textarea").type("do exercise");
     cy.contains("Answer").click();
+    cy.wait(1000);
+    cy.contains("goal").click();
+    cy.get("#filled-textarea").type("Meet some friends");
+    cy.contains("Answer").click();
   });
 });
