@@ -17,17 +17,7 @@ export default function useApplicationData() {
   });
 
   useEffect(() => {
-   /*  axios
-      .get("/api/login")
-      .then((userId) => {
-        setState((state) => ({
-          ...state,
-          currentUser: userId.data
-          
-        }));
-      })
-      .catch((err) => "Failed in initial api fetch:" + err.message); */
-
+   
     Promise.all([
       axios.get("/api/userGoals"),
       axios.get("/api/goals"),
@@ -164,7 +154,7 @@ export default function useApplicationData() {
           ...state,
           users: newUsers,
           currentUser: result.data.id,
-          level: getLevel(user.data)
+          level: getLevel(result.data)
         }))
       }).then(() => {
         if (biodata != null) {

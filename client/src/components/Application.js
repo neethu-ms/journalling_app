@@ -26,10 +26,7 @@ export default function Application() {
   const bio = state.biodatas.filter(
     (biodata) => biodata.user_id === state.currentUser
   )[0]; // Gets biodata for current user
-  /* const userObj = state.users.filter(
-    (user) => user.id === state.currentUser
-  )[0]; */ // Gets current user object
-  //const level = getLevel(userObj); // Get users level
+  
  
   const filteredGoals = state.goals.slice(0, state.level <= 15 ? state.level : 15);
   const questionsArr = filteredGoals.map((goal) => goal.question);

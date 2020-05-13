@@ -33,22 +33,23 @@ router.get("/:id", (req, res) => {
 
 //Create  user
 router.post("/", (req, res) => {
-  bcrypt.hash(req.body.password, 10).then(password => {
-  db.user
-    .create({
-      handle: req.body.handle,
-      email: req.body.email,
-      password: password,
-      points: req.body.points,
-      createdAt: new Date().toISOString(),
-      updatedAt: new Date().toISOString(),
-    })
-    .then((users) => {
-      res.json(users);
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
+  bcrypt.hash(req.body.password, 10).then((password) => {
+    db.user
+      .create({
+        handle: req.body.handle,
+        email: req.body.email,
+        password: password,
+        points: req.body.points,
+        createdAt: new Date().toISOString(),
+        updatedAt: new Date().toISOString(),
+      })
+      .then((users) => {
+        req.session.id = users.id;
+        res.json(users);
+      })
+      .catch((err) => {
+        res.status(500).json({ error: err.message });
+      });
   });
 });
 
