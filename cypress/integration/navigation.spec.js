@@ -5,7 +5,7 @@ describe("Navigation", () => {
 
   // It should REGISTER a user
   it("registers user", () => {
-    cy.request("GET", "http://localhost:3001/api/db/reset");
+    cy.request("GET", "https://journalling-api.herokuapp.com/api/db/reset");
     cy.visit("/");
     cy.contains("REGISTER").click();
     cy.contains("Email Address").type("test4@gmail.com");

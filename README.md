@@ -1,65 +1,39 @@
-# Indezone Journal
-A.I.—powered journaling app to make it easy for anyone to start journaling and get objective insights to get the most out of life
+This project was bootstrapped with [Create React App](https://github.com/facebookincubator/create-react-app).
 
-## Contributors
+## Available Scripts
 
-[Neethu M S](https://github.com/neethu-ms) -- [Altair Ioffe](https://github.com/altairioffe) -- [Lucas Cekan](https://github.com/CekanLucas)
+In the project directory, you can run:
 
-## Setup Express and React using the following link
+### `npm start`
 
-  <https://daveceddia.com/create-react-app-express-backend/>
+Runs the app in the development mode.<br>
+Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
 
-## Features
+The page will reload if you make edits.<br>
+You will also see any lint errors in the console.
 
-1. User will be provided with questions based on their level. If user is at level 1, user will have 1 question, if at level 2, there will be 2 questions and it goes on. Once the user reaches level 15, then number of questions are limited to 15 for higher levels.
-2. When user answers a question, it will be added to his timeline immediately.
-3. If user is at level 10 or higher, he will be able to see his insights, which is based on the analysis of his previous entries using IBM watson API.
-4. Level is computed based on points. For each word, 1 point will be added. If user deletes an entry, the points will be reduced. All users start with level 1. Once user earns 20 points, will reach level 2, 30 points will lead to level 3 and it continues till level 10.
-5. Once user reaches level 10, needs to earn 100 more points to reach level 11 and the same procedure continues to proceed to next levels.
+### `npm test`
 
-## Final Product
+Launches the test runner in the interactive watch mode.<br>
+See the section about [running tests](#running-tests) for more information.
 
-!["Journaling home page"](docs/homePage.png "Home Page")
----
+### `npm run build`
 
-!["Question Answer Panel"](docs/questionAnswerPanel.png "Question Answer Panel")
----
-!["Timeline"](docs/Timeline.png "Timeline")
----
-!["Get Insights"](docs/GetInsights.png "Get Insights")
----
+Builds the app for production to the `build` folder.<br>
+It correctly bundles React in production mode and optimizes the build for the best performance.
 
-!["Level 1 User"](docs/Level1User.png "Level 1 User")
+The build is minified and the filenames include the hashes.<br>
+Your app is ready to be deployed!
 
-## Test cases
+See the section about [deployment](#deployment) for more information.
 
-!["Level 1 User"](docs/Level1UserCypress.png "Level 1 User")
----
+### `npm run eject`
 
-!["Timeline"](docs/TimelineCypress.png "Timeline")
----
-!["Get Insights"](docs/Insights-cypress.png "Get Insights")
----
+**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
 
-## Dependencies
+If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
 
-   1. React
-   2. Express
-   3. axios
-   4. saas
-   5. Nodemon
-   6. sequelize
-   7. sequelize-cli
-   8. pg
-   9. ibm-watson
-   10. personality-text-summary
-   11. react-event-timeline
-   12. Material-UI
-   13. bcrypt
-   14. cookie-session
-   15. Node version 12
-   16. cypress
+Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
 
-## Design tools
+You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
 
-  1.ERD and wire frame -  <https://www.lucidchart.com/>
