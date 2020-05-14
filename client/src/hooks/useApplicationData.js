@@ -35,7 +35,7 @@ export default function useApplicationData() {
           users: all[3].data,
           currentUser: all[4].data,
           level: getLevel(all[3].data.filter(user => user.id === all[4].data)[0]),
-          email: all[3].data.filter(user => user.id === all[4].data)[0].email
+          email: all[3].data.filter(user => user.id === all[4].data)[0]?all[3].data.filter(user => user.id === all[4].data)[0].email:""
                    
         }));
 
