@@ -2,7 +2,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: circleci/node:12.7.0
+      - image: circleci/node:10.16
 
     working_directory: ~/client
      
@@ -28,7 +28,7 @@ jobs:
         - store_test_results:
             path: test-results.xml
 
-   deploy: 
+   deploy:
       machine: 
          enabled: true 
 
