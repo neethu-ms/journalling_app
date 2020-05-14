@@ -39,7 +39,7 @@ jobs:
         - run:
           name: Push Frontend to Production
           command: |
-            git push git@github.com:neethu-ms/journalling_app.git eploy/frontend-nms:production
+            git push git@github.com:neethu-ms/journalling_app.git deploy/frontend-nms:production
    
  workflows:
   version: 2
