@@ -1,0 +1,57 @@
+version: 2.1
+jobs: 
+  build: 
+    working_directory: ~/client
+    docker:
+      - image: circleci/node:12.7.0
+   steps: 
+    - checkout 
+    - restore_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+    - run: npm install
+    - save_cache:
+          key: dependency-cache-{{ checksum "package-lock.json" }}
+          paths:
+            - ./node_modules
+    - run: npm test
+    - run:
+          name: code-coverage
+          command: './node_modules/.bin/nyc report --reporter=text-lcov'
+    - store_artifacts:
+          path: test-results.xml
+          prefix: tests
+    - store_artifacts:
+          path: coverage
+          prefix: coverage
+    - store_test_results:
+         path: test-results.xml
+
+   deploy: 
+      machine: 
+         enabled: true 
+
+      working_directory: ~/client
+      steps: 
+      - add_ssh_keys:
+          fingerprints:
+             - "f8:f2:9a:55:b0:ca:7e:38:ed:dc:75:2b:0c:b6:ca:e6"
+      - checkout 
+        - run:
+          name: Push Frontend to Production
+          command: |
+            git push git@github.com:neethu-ms/journalling_app.git eploy/frontend-nms:production
+   
+ workflows:
+  version: 2
+  test_and_deploy:
+    jobs:
+      - build:
+          filters:
+            branches:
+              ignore: production
+      - deploy:
+          filters:
+            branches:
+              ignore: production
+          requires:
+            - build
