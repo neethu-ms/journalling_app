@@ -1,6 +1,6 @@
-const fs = require('fs');
-const path = require('path');
-require('dotenv').config();
+const fs = require("fs");
+const path = require("path");
+require("dotenv").config();
 module.exports = {
   development: {
     username: process.env.DB_USER,
@@ -8,10 +8,14 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: 5432,
-    dialect: 'postgres',
+    dialect: "postgres",
     dialectOptions: {
-      bigNumberStrings: true
-    }
+      bigNumberStrings: true,
+      ssl: {
+        require: true,
+        rejectUnauthorized: false
+      },
+    },
   },
   test: {
     username: process.env.DB_USER,
@@ -19,10 +23,9 @@ module.exports = {
     database: process.env.DB_NAME,
     host: process.env.DB_HOST,
     port: 5432,
-    dialect: 'postgres',
+    dialect: "postgres",
     dialectOptions: {
-      bigNumberStrings: true
-    }
-  }
+      bigNumberStrings: true,
+    },
+  },
 };
-
