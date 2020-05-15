@@ -29,7 +29,7 @@ jobs:
     steps:
       - add_ssh_keys:
           fingerprints:
-            - "89:fa:db:e1:54:e9:61:38:e0:3c:d9:9c:37:f4:dd:a7"
+            - "79:ac:b1:fb:d7:4f:6a:3b:9e:aa:d8:bc:81:ac:ec:e7"
       - checkout
       - run:
           name: Push Frontend to Production
