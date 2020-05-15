@@ -1,4 +1,6 @@
 version: 2
+orbs:
+  cypress: cypress-io/cypress@1.22.0
 jobs:
   build:
     docker:
@@ -13,12 +15,12 @@ jobs:
             - v1-dependencies-{{ checksum "package.json" }}
             - v1-dependencies-
       - run: npm install
-      - run: ./node_modules/.bin/cypress install
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - run: npm run cypress
+      - cypress/run:
+          yarn: true
   
   deploy:
     machine:
