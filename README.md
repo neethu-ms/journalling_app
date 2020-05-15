@@ -5,6 +5,10 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
 
 [Neethu M S](https://github.com/neethu-ms) -- [Altair Ioffe](https://github.com/altairioffe) -- [Lucas Cekan](https://github.com/CekanLucas)
 
+## Quick Start
+
+   Application deployed in <https://journalling.netlify.app/>
+
 ## Setup Express and React using the following link
 
   <https://daveceddia.com/create-react-app-express-backend/>
@@ -40,6 +44,10 @@ A.I.—powered journaling app to make it easy for anyone to start journaling and
 ---
 !["Get Insights"](docs/Insights-cypress.png "Get Insights")
 ---
+
+## Deployments
+1. API server deployed in https://journalling-api.herokuapp.com/
+2. Front end deployed in https://journalling.netlify.app/
 
 ## Dependencies
 
