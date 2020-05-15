@@ -2,6 +2,9 @@ version: 2
 orbs:
   cypress: cypress-io/cypress@1.22.0
 jobs:
+  - cypress/run:
+      yarn: true
+      working_directory: ~/client
   build:
     docker:
       - image: circleci/node:10.16
@@ -19,8 +22,7 @@ jobs:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
-      - cypress/run:
-          yarn: true
+      - run: npm run cypress
   
   deploy:
     machine:
