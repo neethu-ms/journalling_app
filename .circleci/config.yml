@@ -2,9 +2,6 @@ version: 2
 orbs:
   cypress: cypress-io/cypress@1.22.0
 jobs:
-  - cypress/run:
-      yarn: true
-      working_directory: ~/client
   build:
     docker:
       - image: circleci/node:10.16
