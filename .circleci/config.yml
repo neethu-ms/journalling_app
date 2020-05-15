@@ -44,9 +44,11 @@ workflows:
           filters:
             branches:
               ignore: production
+              only: deploy/frontend-nms
       - deploy:
           filters:
             branches:
               ignore: production
+              only: deploy/frontend-nms
           requires:
             - build
