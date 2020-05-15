@@ -18,7 +18,6 @@ export function getCurrentUserGoals(userGoals, goals, userId) {
 
 
 export function getLevel(userObj){
-console.log("userObj",userObj);
   let level;
   let extraPoints = 0;
   if (userObj) {
