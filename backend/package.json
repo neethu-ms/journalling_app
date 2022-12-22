@@ -17,7 +17,7 @@
     "express": "~4.16.1",
     "http-errors": "~1.6.3",
     "ibm-watson": "^5.4.0",
-    "jsonwebtoken": "^8.5.1",
+    "jsonwebtoken": "^9.0.0",
     "morgan": "~1.9.1",
     "personality-text-summary": "^2.2.0",
     "pg": "^8.0.2",
